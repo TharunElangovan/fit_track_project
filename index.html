@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitTrack | Personal Health & Fitness Companion</title>
+    <!-- Google Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================================
+           1. CSS VARIABLES & RESET
+        ========================================================= */
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --dark: #0f172a;
+            --text: #334155;
+            --muted: #64748b;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        /* Reusable Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.15s;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background-color: var(--white);
+            color: var(--dark);
+            border: 1.5px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary-dark);
+        }
+
+        /* =========================================================
+           2. NAVIGATION BAR
+        ========================================================= */
+        header {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.75rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text);
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.4rem 0.65rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* =========================================================
+           3. HERO SECTION
+        ========================================================= */
+        .hero {
+            background-color: var(--bg-light);
+            padding: 4.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #d1fae5;
+            color: #065f46;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.3rem 0.75rem;
+            border-radius: 999px;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            line-height: 1.2;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: var(--muted);
+            margin-bottom: 1.75rem;
+            max-width: 520px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.85rem;
+        }
+
+        /* Right-side Hero Summary Card */
+        .hero-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.75rem;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.05);
+        }
+
+        .hero-card img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1.25rem;
+            background-color: #e2e8f0;
+        }
+
+        .stat-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            text-align: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .stat-row strong {
+            display: block;
+            font-size: 1.15rem;
+            color: var(--dark);
+        }
+
+        .stat-row span {
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        /* =========================================================
+           4. SECTIONS & 3-COLUMN CARDS
+        ========================================================= */
+        section {
+            padding: 4.5rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 2.75rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.9rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: var(--muted);
+            font-size: 0.98rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.75rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.05);
+        }
+
+        .card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: #ecfdf5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.15rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            font-size: 0.92rem;
+            color: var(--muted);
+            margin-bottom: 1.1rem;
+        }
+
+        .card-link {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .card-link:hover {
+            text-decoration: underline;
+        }
+
+        /* =========================================================
+           5. QUICK INTERACTIVE BMI CHECKER
+        ========================================================= */
+        .bmi-section {
+            background-color: var(--bg-light);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .bmi-box {
+            max-width: 680px;
+            margin: 0 auto;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+        }
+
+        .bmi-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 1rem;
+            align-items: end;
+            margin-top: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.35rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.7rem 0.85rem;
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: inherit;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .bmi-result {
+            margin-top: 1.25rem;
+            padding: 0.95rem 1.1rem;
+            border-radius: 8px;
+            background: #f1f5f9;
+            font-size: 0.95rem;
+            color: var(--dark);
+            display: none;
+        }
+
+        /* =========================================================
+           6. FOOTER
+        ========================================================= */
+        footer {
+            background: var(--dark);
+            color: #cbd5e1;
+            padding: 2.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .footer-flex {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* =========================================================
+           7. RESPONSIVE BREAKPOINTS
+        ========================================================= */
+        @media (max-width: 860px) {
+            .hero-grid,
+            .grid-3,
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.1rem;
+            }
+
+            .bmi-form {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                padding: 1.25rem 5%;
+                border-bottom: 1px solid var(--border);
+                gap: 1rem;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body id="top">
+
+    <!-- ==================== HEADER / NAVBAR ==================== -->
+    <header>
+        <div class="container navbar">
+            <a href="index.html" class="logo">💚 Fit<span>Track</span></a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">☰</button>
+
+            <!-- Links to teammates' project pages -->
+            <!-- Links to all 5 team project pages -->
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="workout.html">Workout</a></li>
+                <li><a href="diet.html">Diet & Nutrition</a></li>
+                <li><a href="wellness.html">Health & Wellness</a></li>
+                <li><a href="about.html">About Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div>
+                <span class="badge">Student Health & Fitness Portal</span>
+                <h1>Track Your Fitness, Build Healthy Habits</h1>
+                <p>
+                    A simple, all-in-one wellness platform to explore daily workout routines, follow balanced diet guides, and improve your overall health and wellness.
+                </p>
+                <div class="hero-actions">
+                    <a href="workout.html" class="btn btn-primary">Explore Workouts</a>
+                    <a href="wellness.html" class="btn btn-outline">Health & Wellness</a>
+                </div>
+            </div>
+
+            <!-- Clean Fitness Preview Card -->
+            <div class="hero-card">
+                <img 
+                    src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=80" 
+                    alt="Fitness workout equipment"
+                    onerror="this.src='https://placehold.co/600x300/ecfdf5/059669?text=FitTrack+Daily+Wellness'"
+                >
+                <h3 style="color: var(--dark); font-size: 1.05rem; margin-bottom: 0.25rem;">Today's Quick Goal</h3>
+                <p style="font-size: 0.88rem; color: var(--muted); margin-bottom: 0;">
+                    30 mins brisk workout • 2.5L water • Balanced protein meal
+                </p>
+                <div class="stat-row">
+                    <div>
+                        <strong>45+</strong>
+                        <span>Workouts</span>
+                    </div>
+                    <div>
+                        <strong>30+</strong>
+                        <span>Diet Tips</span>
+                    </div>
+                    <div>
+                        <strong>100%</strong>
+                        <span>Free Access</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 4 CORE PROJECT MODULES ==================== -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2>Explore Our Project Sections</h2>
+                <p>Navigate directly to each module built by our team to support your daily health and fitness goals.</p>
+            </div>
+
+            <div class="grid-4">
+                <div class="card">
+                    <div class="card-icon">🏋️</div>
+                    <h3>Workout</h3>
+                    <p>Step-by-step home and gym exercises organized by muscle group and fitness level.</p>
+                    <a href="workout.html" class="card-link">Go to Workout →</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🥗</div>
+                    <h3>Diet & Nutrition</h3>
+                    <p>Easy-to-follow daily meal ideas for weight loss, muscle gain, and balanced clean eating.</p>
+                    <a href="diet.html" class="card-link">View Diet & Nutrition →</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🧘</div>
+                    <h3>Health & Wellness</h3>
+                    <p>Daily hydration habits, sleep hygiene, stress relief tips, and holistic lifestyle guides.</p>
+                    <a href="wellness.html" class="card-link">Explore Health & Wellness →</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">👥</div>
+                    <h3>About Us</h3>
+                    <p>Learn about our project mission, goals, and the 5-member student team behind FitTrack.</p>
+                    <a href="about.html" class="card-link">Meet the Team →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== QUICK INTERACTIVE BMI CHECK ==================== -->
+    <section class="bmi-section" id="quick-bmi">
+        <div class="container">
+            <div class="bmi-box">
+                <h2 style="color: var(--dark); font-size: 1.45rem;">Quick BMI Check</h2>
+                <p style="color: var(--muted); font-size: 0.92rem; margin-top: 0.25rem;">
+                    Enter your height and weight below for an instant health check right on the home page.
+                </p>
+
+                <form class="bmi-form" id="bmiForm">
+                    <div class="form-group">
+                        <label for="heightInput">Height (cm)</label>
+                        <input type="number" id="heightInput" placeholder="e.g. 172" min="50" max="250" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="weightInput">Weight (kg)</label>
+                        <input type="number" id="weightInput" placeholder="e.g. 68" min="20" max="300" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Calculate</button>
+                </form>
+
+                <div class="bmi-result" id="bmiResult"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== POPULAR WORKOUT CATEGORIES ==================== -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2>Popular Workout Categories</h2>
+                <p>Pick a training style that fits your schedule and energy level today.</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon">💪</div>
+                    <h3>Strength Training</h3>
+                    <p>Build foundational strength with push-ups, squats, dumbbells, and bodyweight sets.</p>
+                    <a href="workout.html" class="card-link">Start Routine →</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🏃</div>
+                    <h3>Cardio & HIIT</h3>
+                    <p>Boost stamina and burn calories with short, high-energy 20-minute interval sessions.</p>
+                    <a href="workout.html" class="card-link">Start Routine →</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🌿</div>
+                    <h3>Mindful Recovery</h3>
+                    <p>Improve posture, reduce stress, and recover faster with daily wellness routines.</p>
+                    <a href="wellness.html" class="card-link">View Wellness Tips →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer>
+        <div class="container footer-flex">
+            <div>
+                <p style="font-weight: 600; color: #fff;">© 2026 FitTrack — Health & Fitness Project</p>
+                <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.25rem;">
+                    Built by Tharun, Karthick, Vignesh, Pradeep & Kumara Krishnan
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="workout.html">Workout</a>
+                <a href="diet.html">Diet & Nutrition</a>
+                <a href="wellness.html">Health & Wellness</a>
+                <a href="about.html">About Us</a>
+                <a href="#top" style="color: var(--primary); font-weight: 600;">Back to Top ↑</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== SIMPLE JAVASCRIPT ==================== -->
+    <script>
+        // 1. Mobile navigation toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+
+        // 2. Quick BMI Calculator on the Home Page
+        const bmiForm = document.getElementById('bmiForm');
+        const bmiResult = document.getElementById('bmiResult');
+
+        bmiForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const heightCm = parseFloat(document.getElementById('heightInput').value);
+            const weightKg = parseFloat(document.getElementById('weightInput').value);
+
+            if (!heightCm || !weightKg || heightCm <= 0 || weightKg <= 0) return;
+
+            const heightMeters = heightCm / 100;
+            const bmi = (weightKg / (heightMeters * heightMeters)).toFixed(1);
+
+            let category = '';
+            if (bmi < 18.5) category = 'Underweight';
+            else if (bmi < 25) category = 'Normal Weight';
+            else if (bmi < 30) category = 'Overweight';
+            else category = 'Obese';
+
+            bmiResult.style.display = 'block';
+            bmiResult.innerHTML = `Your BMI is <strong>${bmi}</strong> — Category: <strong style="color: #059669;">${category}</strong>`;
+        });
+    </script>
+</body>
+</html>
