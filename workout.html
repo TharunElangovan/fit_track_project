@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workout | Fitness Website</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Workout | FitTrack</title>
+    <link rel="stylesheet" href="workout.css">
 </head>
-
 <body>
 
     <header>
-        <h2>FitZone</h2>
+        <a href="index.html" class="brand">⚡ Fit<span>Track</span></a>
 
         <nav>
             <a href="index.html">Home</a>
-            <a href="workout.html">Workouts</a>
-            <a href="#">Nutrition</a>
-            <a href="#">About</a>
+            <a href="workout.html" class="active">Workout</a>
+            <a href="diet.html">Diet &amp; Nutrition</a>
+            <a href="wellness.html">Health &amp; Wellness</a>
+            <a href="about.html">About Us</a>
         </nav>
     </header>
 
@@ -29,10 +29,10 @@
 
         <div class="card">
             <h2>💪 Push-Ups</h2>
-            <p>Focus: Chest & Arms</p>
+            <p>Focus: Chest &amp; Arms</p>
             <p>Level: Beginner</p>
             <p>3 Sets × 10 Reps</p>
-            <button>Start Workout</button>
+            <button type="button" class="workout-btn">Start Workout</button>
         </div>
 
         <div class="card">
@@ -40,7 +40,7 @@
             <p>Focus: Legs</p>
             <p>Level: Beginner</p>
             <p>3 Sets × 15 Reps</p>
-            <button>Start Workout</button>
+            <button type="button" class="workout-btn">Start Workout</button>
         </div>
 
         <div class="card">
@@ -48,7 +48,7 @@
             <p>Focus: Core</p>
             <p>Level: Beginner</p>
             <p>3 Sets × 30 Seconds</p>
-            <button>Start Workout</button>
+            <button type="button" class="workout-btn">Start Workout</button>
         </div>
 
         <div class="card">
@@ -56,10 +56,35 @@
             <p>Focus: Cardio</p>
             <p>Level: Beginner</p>
             <p>3 Sets × 20 Reps</p>
-            <button>Start Workout</button>
+            <button type="button" class="workout-btn">Start Workout</button>
         </div>
 
     </section>
+
+    <footer class="workout-footer">
+        <p>© 2026 FitTrack — Workout Module (Karthick)</p>
+        <div class="workout-footer-links">
+            <a href="index.html">Home</a>
+            <a href="workout.html">Workout</a>
+            <a href="diet.html">Diet &amp; Nutrition</a>
+            <a href="wellness.html">Health &amp; Wellness</a>
+            <a href="about.html">About Us</a>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.workout-btn').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                if (btn.classList.contains('completed')) {
+                    btn.classList.remove('completed');
+                    btn.textContent = 'Start Workout';
+                } else {
+                    btn.classList.add('completed');
+                    btn.textContent = 'Completed ✓';
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
