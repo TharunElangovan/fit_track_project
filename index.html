@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- External Workout Stylesheet -->
     <link rel="stylesheet" href="workout.css">
-    
+
     <style>
         /* =========================================================
            1. CSS VARIABLES & RESET (Obsidian & Electric Lime)
@@ -397,6 +397,18 @@
             display: none;
         }
 
+        .bmi-result-range {
+            margin-top: 0.45rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .bmi-result-status {
+            margin-top: 0.25rem;
+            font-size: 0.88rem;
+            color: var(--text);
+        }
+
         /* =========================================================
            6. FOOTER
         ========================================================= */
@@ -483,8 +495,8 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="workout.html">Workout</a></li>
-                <li><a href="diet.html">Diet & Nutrition</a></li>
-                <li><a href="wellness.html">Health & Wellness</a></li>
+                <li><a href="diet.html">Diet &amp; Nutrition</a></li>
+                <li><a href="wellness.html">Health &amp; Wellness</a></li>
                 <li><a href="about.html">About Us</a></li>
             </ul>
         </div>
@@ -494,21 +506,21 @@
     <section class="hero">
         <div class="container hero-grid">
             <div>
-                <span class="badge">Student Health & Fitness Portal</span>
+                <span class="badge">Student Health &amp; Fitness Portal</span>
                 <h1>Track Your Fitness, Build Healthy Habits</h1>
                 <p>
                     A simple, all-in-one wellness platform to explore daily workout routines, follow balanced diet guides, and improve your overall health and wellness.
                 </p>
                 <div class="hero-actions">
                     <a href="workout.html" class="btn btn-primary">Explore Workouts</a>
-                    <a href="wellness.html" class="btn btn-outline">Health & Wellness</a>
+                    <a href="wellness.html" class="btn btn-outline">Health &amp; Wellness</a>
                 </div>
             </div>
 
             <!-- Clean Fitness Preview Card -->
             <div class="hero-card">
-                <img 
-                    src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=80" 
+                <img
+                    src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=80"
                     alt="Fitness workout equipment"
                     onerror="this.src='https://placehold.co/600x300/131a2a/a3e635?text=FitTrack+Daily+Wellness'"
                 >
@@ -552,16 +564,16 @@
 
                 <div class="card">
                     <div class="card-icon">🥗</div>
-                    <h3>Diet & Nutrition</h3>
+                    <h3>Diet &amp; Nutrition</h3>
                     <p>Easy-to-follow daily meal ideas for weight loss, muscle gain, and balanced clean eating.</p>
-                    <a href="diet.html" class="card-link">View Diet & Nutrition →</a>
+                    <a href="diet.html" class="card-link">View Diet &amp; Nutrition →</a>
                 </div>
 
                 <div class="card">
                     <div class="card-icon">🧘</div>
-                    <h3>Health & Wellness</h3>
+                    <h3>Health &amp; Wellness</h3>
                     <p>Daily hydration habits, sleep hygiene, stress relief tips, and holistic lifestyle guides.</p>
-                    <a href="wellness.html" class="card-link">Explore Health & Wellness →</a>
+                    <a href="wellness.html" class="card-link">Explore Health &amp; Wellness →</a>
                 </div>
 
                 <div class="card">
@@ -580,7 +592,7 @@
             <div class="bmi-box">
                 <h2 style="color: var(--text); font-size: 1.45rem;">Quick BMI Check</h2>
                 <p style="color: var(--muted); font-size: 0.92rem; margin-top: 0.25rem;">
-                    Enter your height and weight below for an instant health check right on the home page.
+                    Enter your height and weight below for an instant health check and your ideal weight range.
                 </p>
 
                 <form class="bmi-form" id="bmiForm">
@@ -620,7 +632,7 @@
 
                 <div class="card">
                     <div class="card-icon">🏃</div>
-                    <h3>Cardio & HIIT</h3>
+                    <h3>Cardio &amp; HIIT</h3>
                     <p>Boost stamina and burn calories with short, high-energy 20-minute interval sessions.</p>
                     <a href="workout.html" class="card-link">Start Routine →</a>
                 </div>
@@ -639,17 +651,17 @@
     <footer>
         <div class="container footer-flex">
             <div>
-                <p style="font-weight: 600; color: #ffffff;">© 2026 FitTrack — Health & Fitness Project</p>
+                <p style="font-weight: 600; color: #ffffff;">© 2026 FitTrack — Health &amp; Fitness Project</p>
                 <p style="font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem;">
-                    Built by Tharun, Karthick, Vignesh, Pradeep & Kumara Krishnan
+                    Built by Tharun, Karthick, Vignesh, Pradeep &amp; Kumara Krishnan
                 </p>
             </div>
 
             <div class="footer-links">
                 <a href="index.html">Home</a>
                 <a href="workout.html">Workout</a>
-                <a href="diet.html">Diet & Nutrition</a>
-                <a href="wellness.html">Health & Wellness</a>
+                <a href="diet.html">Diet &amp; Nutrition</a>
+                <a href="wellness.html">Health &amp; Wellness</a>
                 <a href="about.html">About Us</a>
                 <a href="#top" style="color: var(--primary); font-weight: 600;">Back to Top ↑</a>
             </div>
@@ -666,7 +678,7 @@
             navLinks.classList.toggle('open');
         });
 
-        // 2. Quick BMI Calculator on the Home Page
+        // 2. Quick BMI Calculator with Ideal Healthy Weight Range
         const bmiForm = document.getElementById('bmiForm');
         const bmiResult = document.getElementById('bmiResult');
 
@@ -682,25 +694,41 @@
             const bmiValue = weightKg / (heightMeters * heightMeters);
             const bmi = bmiValue.toFixed(1);
 
+            const minHealthyWeight = 18.5 * heightMeters * heightMeters;
+            const maxHealthyWeight = 24.9 * heightMeters * heightMeters;
+
             let category = '';
             let color = '';
+            let statusMsg = '';
+
             if (bmiValue < 18.5) {
                 category = 'Underweight';
                 color = '#38bdf8';
+                const diff = (minHealthyWeight - weightKg).toFixed(1);
+                statusMsg = `You may need to gain about <strong>${diff} kg</strong> to reach the healthy weight range.`;
             } else if (bmiValue < 25) {
                 category = 'Normal weight';
                 color = '#a3e635';
+                statusMsg = `Great job! Your current weight fits right inside the healthy range for your height.`;
             } else if (bmiValue < 30) {
                 category = 'Overweight';
                 color = '#fbbf24';
+                const diff = (weightKg - maxHealthyWeight).toFixed(1);
+                statusMsg = `You are about <strong>${diff} kg</strong> above the healthy range for your height.`;
             } else {
                 category = 'Obese';
                 color = '#f87171';
+                const diff = (weightKg - maxHealthyWeight).toFixed(1);
+                statusMsg = `You are about <strong>${diff} kg</strong> above the healthy range for your height.`;
             }
 
             bmiResult.style.display = 'block';
             bmiResult.style.borderLeft = `4px solid ${color}`;
-            bmiResult.innerHTML = `Your BMI is <strong>${bmi}</strong> — Category: <strong style="color: ${color};">${category}</strong>`;
+            bmiResult.innerHTML = `
+                <div>Your BMI is <strong>${bmi}</strong> — Category: <strong style="color: ${color};">${category}</strong></div>
+                <div class="bmi-result-range">For a height of <strong>${heightCm} cm</strong>, your healthy weight range is <strong>${minHealthyWeight.toFixed(1)} kg – ${maxHealthyWeight.toFixed(1)} kg</strong>.</div>
+                <div class="bmi-result-status">${statusMsg}</div>
+            `;
         });
     </script>
 </body>
