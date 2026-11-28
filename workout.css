@@ -9,22 +9,44 @@ header {
     background-color: #0f172a;
     padding: 20px 8%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid #1e293b;
 }
 
-header h2 {
+header h2,
+header .brand {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+header .brand span {
     color: #22c55e;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 22px;
 }
 
 nav a {
-    color: white;
+    color: #cbd5e1;
     text-decoration: none;
-    margin-left: 25px;
+    font-weight: 500;
+    transition: color 0.2s;
 }
 
-nav a:hover {
+nav a:hover,
+nav a.active {
     color: #22c55e;
+    font-weight: 600;
 }
 
 .hero {
@@ -56,14 +78,17 @@ nav a:hover {
     background-color: #1e293b;
     padding: 25px;
     border-radius: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
 }
 
 .card h2 {
     color: #22c55e;
+    margin-top: 0;
 }
 
 .card p {
@@ -76,9 +101,42 @@ button {
     border: none;
     padding: 12px 18px;
     border-radius: 8px;
+    font-weight: 600;
     cursor: pointer;
+    transition: background-color 0.2s;
 }
 
 button:hover {
     background-color: #16a34a;
+}
+
+button.completed {
+    background-color: #0ea5e9;
+}
+
+.workout-footer {
+    background-color: #0f172a;
+    border-top: 1px solid #1e293b;
+    color: #94a3b8;
+    text-align: center;
+    padding: 24px 20px;
+    margin-top: 30px;
+    font-size: 0.9rem;
+}
+
+.workout-footer-links {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+.workout-footer-links a {
+    color: #cbd5e1;
+    text-decoration: none;
+}
+
+.workout-footer-links a:hover {
+    color: #22c55e;
 }
