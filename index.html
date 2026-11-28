@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- External Workout Stylesheet -->
+    <link rel="stylesheet" href="workout.css">
     
     <style>
         /* =========================================================
@@ -91,6 +93,8 @@
            2. NAVIGATION BAR
         ========================================================= */
         header {
+            display: block;
+            padding: 0;
             background: var(--bg-dark);
             border-bottom: 1px solid var(--border);
             position: sticky;
@@ -149,10 +153,17 @@
             color: var(--text);
         }
 
+        .menu-toggle:hover {
+            background: var(--surface);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
         /* =========================================================
            3. HERO SECTION
         ========================================================= */
         .hero {
+            text-align: left;
             background-color: var(--surface-alt);
             padding: 4.5rem 0;
             border-bottom: 1px solid var(--border);
@@ -273,6 +284,7 @@
         }
 
         .card {
+            width: 100%;
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius);
