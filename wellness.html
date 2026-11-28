@@ -51,8 +51,8 @@
     }
     .logo .heart { color: #69b52e; margin-right: 8px; }
     .logo .green { color: var(--green); }
-    nav { display: flex; align-items: center; gap: 30px; }
-    nav a { color: #34424c; font-weight: 600; }
+    nav { display: flex; align-items: center; gap: 28px; }
+    nav a { color: #34424c; font-weight: 600; transition: color .2s; }
     nav a:hover, nav a.active { color: var(--green-dark); }
 
     /* CSS-only mobile menu: no JavaScript required */
@@ -222,14 +222,23 @@
       background: #14251f;
       color: #d6e4de;
       text-align: center;
-      padding: 25px 0;
+      padding: 28px 0;
     }
     footer span { color: #51d6a2; }
+    .footer-nav {
+      margin-top: 12px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: .92rem;
+    }
+    .footer-nav a:hover { color: #51d6a2; }
 
     @media (max-width: 800px) {
       .navbar { min-height: 78px; }
       .menu-button { display: block; }
-      .menu-open { display: none; }
+      .menu-open { display: inline; }
       .menu-close { display: none; }
       .menu-check:checked + .menu-button .menu-open { display: none; }
       .menu-check:checked + .menu-button .menu-close { display: inline; }
@@ -261,7 +270,7 @@
 <body>
   <header>
     <div class="container navbar">
-      <a class="logo" href="#home"><span class="heart">♥</span>Fit <span class="green">Track</span></a>
+      <a class="logo" href="index.html"><span class="heart">♥</span>Fit <span class="green">Track</span></a>
 
       <input class="menu-check" type="checkbox" id="menu-toggle">
       <label class="menu-button" for="menu-toggle" aria-label="Toggle navigation">
@@ -270,10 +279,11 @@
       </label>
 
       <nav>
-        <a class="active" href="#home">Home</a>
-        <a href="#wellness">Health &amp; Wellness</a>
-        <a href="#habits">Healthy Habits</a>
-        <a href="#about">About Us</a>
+        <a href="index.html">Home</a>
+        <a href="workout.html">Workout</a>
+        <a href="diet.html">Diet &amp; Nutrition</a>
+        <a class="active" href="wellness.html">Health &amp; Wellness</a>
+        <a href="about.html">About Us</a>
       </nav>
     </div>
   </header>
@@ -364,7 +374,16 @@
   </main>
 
   <footer>
-    <div class="container">Made with <span>♥</span> for a healthier tomorrow · FitTrack</div>
+    <div class="container">
+      <div>Made with <span>♥</span> for a healthier tomorrow · FitTrack</div>
+      <div class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="workout.html">Workout</a>
+        <a href="diet.html">Diet &amp; Nutrition</a>
+        <a href="wellness.html">Health &amp; Wellness</a>
+        <a href="about.html">About Us</a>
+      </div>
+    </div>
   </footer>
 </body>
 </html>
